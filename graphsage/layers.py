@@ -5,7 +5,12 @@ import tensorflow as tf
 
 from graphsage.inits import zeros
 
-flags = tf.app.flags
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--flag_name', type=str, default='default_value', help='description of the flag')
+flags = parser.parse_args()
+
 FLAGS = flags.FLAGS
 
 # DISCLAIMER:
