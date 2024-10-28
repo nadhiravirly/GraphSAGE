@@ -30,6 +30,14 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--log_device_placement', type=bool, default=False,
                     help="Whether to log device placement.")
 
+# Define the necessary flags
+parser.add_argument('--train_prefix', type=str, required=True,
+                    help="Prefix for the training data path.")
+parser.add_argument('--model', type=str, required=True,
+                    help="Model type to use, e.g., 'graphsage_mean'.")
+parser.add_argument('--sigmoid', action='store_true',
+                    help="Whether to apply sigmoid activation.")
+
 # Parse the arguments
 FLAGS = parser.parse_args()
 
