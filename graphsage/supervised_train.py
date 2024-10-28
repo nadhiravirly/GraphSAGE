@@ -21,12 +21,18 @@ seed = 123
 np.random.seed(seed)
 tf.set_random_seed(seed)
 
-# Settings
-flags = tf.app.flags
-FLAGS = flags.FLAGS
+import argparse
 
-tf.app.flags.DEFINE_boolean('log_device_placement', False,
-                            """Whether to log device placement.""")
+# Settings
+parser = argparse.ArgumentParser()
+
+# Define the boolean flag
+parser.add_argument('--log_device_placement', type=bool, default=False,
+                    help="Whether to log device placement.")
+
+# Parse the arguments
+FLAGS = parser.parse_args()
+
 #core params..
 flags.DEFINE_string('model', 'graphsage_mean', 'model names. See README for possible values.')  
 flags.DEFINE_float('learning_rate', 0.01, 'initial learning rate.')
@@ -336,4 +342,5 @@ def main(argv=None):
     train(train_data)
 
 if __name__ == '__main__':
-    tf.app.run()
+    FLAGS = parser.parse_args()  # Pastikan ini sudah ada sebelumnya
+    main()  # Panggil fungsi utama Anda di sini
